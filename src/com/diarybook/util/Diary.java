@@ -15,13 +15,13 @@ public class Diary {
         // pathname是以用户ID命名的文件夹
         File dirfile = new File(pathname);
         BufferedWriter bufw = null;
-        // 建立文件夹
+        // mkdir
         dirfile.mkdirs();
 
-        // 建立日记文件，后缀为.kz
+        // create diary file
         File file = new File(dirfile, title + ".ky");
         try {
-            //写入文件
+            // write
             bufw = new BufferedWriter(new FileWriter(file, true));
             bufw.write(txt);
         } catch (IOException e) {
@@ -42,10 +42,10 @@ public class Diary {
 
     public static void read(File file, Document doc) {
 
-        // 创建读取流，读取文件内容，并将读到的内容添加到日记显示区
+        // read file, and write its content
         try (BufferedReader bufr = new BufferedReader(new FileReader(file));) {
             String txt = null;
-            // 获取换行符,因为Linux和Windows下的换行符是不一样的。这样可以增强跨平台性
+            // get line separator,因为Linux和Windows下的 line separator 是不一样的。这样可以增强跨平台性
             String line = System.getProperty("line.separator");
             while ((txt = bufr.readLine()) != null) {
 

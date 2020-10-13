@@ -28,7 +28,7 @@ public class Register {
             return "Password not conform to the rules";
     }
 
-    //如果以上验证都没有错误信息返回，则执行写入用户信息
+
     public static String register(String name,String passwd,String ID) {
         user.setName(name);
         user.setPasswd(passwd);

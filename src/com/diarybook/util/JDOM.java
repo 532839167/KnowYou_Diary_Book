@@ -17,47 +17,44 @@ import org.jdom2.output.XMLOutputter;
 
 public class JDOM {
 
-    //注册用户信息
+    // register user info
     public static String write(String n, String p, String id) {
-        // TODO Auto-generated method stub
 
-        // UserInfo.xml文档的路径
         String path = "C:\\Users\\vasil\\Desktop\\project\\diary\\UserInfo.xml";
-        //将xml文档封装成file
+
         File file = new File(path);
-        //使用默认的sax解析器
+        // sax parser
         SAXBuilder saxBuilder = new SAXBuilder();
-        Document doc; //声明document文档
+        Document doc;
         try {
             doc = saxBuilder.build(file);
 
-            //元素对应到xml文档中就是标签
-            Element root = doc.getRootElement(); //得到根元素
-            Element user = new Element("User"); //建立User元素
-            Element name = new Element("name");//建立name元素
-            Element passwd = new Element("passwd");//建立passwd元素
+            // create elements (tags) in file
+            Element root = doc.getRootElement();
+            Element user = new Element("User");
+            Element name = new Element("name");
+            Element passwd = new Element("passwd");
 
-            /*首先检测xml文档中是否已经存在了ID号相同的用户，如果不存在才可以继续注册*/
+            /* check if the id already exist */
             if (checkID(id, root)) {
-                //将ID设置为user的属性
+                // set ID as an atrribute of user
                 user.setAttribute(new Attribute("id", id));
-                //设置姓名和密码
+                // set name and password
                 name.setText(n);
                 passwd.setText(p);
 
-                //将name，passwd元素添加到user元素下
+                // add name, password to user
                 user.addContent(name);
                 user.addContent(passwd);
 
-                //将user元素添加到根元素下
                 root.addContent(user);
 
-                //输出xml文档
+                //output xml
                 XMLOutputter out = new XMLOutputter();
                 out.output(doc, new FileOutputStream(file));
-                return "Successful registration";//返回注册成功
+                return "Successfully registered";
             } else
-                //返回ID存在信息，重新输入ID
+                // fail - already exist
                 return "ID already exists, please input again";
 
         } catch (JDOMException e) {
@@ -67,17 +64,17 @@ public class JDOM {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return "ERROR";//未知错误
+        return "ERROR";
 
     }
 
     public static boolean checkID(String id, Element root) {
-        // 检测ID是否存在
+        // check if ID exist
         boolean flag = true;
         @SuppressWarnings("unchecked")
-        //得到User标签的所有子元素，并加入到map集合中
+        // get all sub elements for User tag in a map
                 List<Element> list = root.getChildren("User");
-        //迭代检测是否存在ID
+        // check if ID exist
         Iterator<Element> it = list.iterator();
         while (it.hasNext()) {
             Element e = (Element) it.next();
@@ -89,11 +86,9 @@ public class JDOM {
 
     }
 
-    //读取xml文档用于登录
+    //read xml
     public static String read(String id, String passwd) {
 
-        // UserInfo.xml文档的路径
-        // 注意此处的路径要跟你的项目的实际情况来修改！
         String path = "C:\\Users\\vasil\\Desktop\\project\\diary\\UserInfo.xml";
         File file = new File(path);
         SAXBuilder saxBuilder = new SAXBuilder();
@@ -102,7 +97,7 @@ public class JDOM {
             Document doc = saxBuilder.build(file);
             Element root = doc.getRootElement();
 
-            //取出用户密码和姓名
+            // get username and pass
             String info = getPasswd(root).get(id);
             if (info == null) {
                 return "User does not exist!!";
@@ -124,11 +119,12 @@ public class JDOM {
     }
 
     @SuppressWarnings("unchecked")
-    /*将用户的密码和姓名添加到map集合中*/
+    /* add user and password to the map */
     private static Map<String, String> getPasswd(Element root) {
-        Map<String, String> map = new TreeMap<String, String>();//存贮用户信息
+        // map for user info
+        Map<String, String> map = new TreeMap<String, String>();
         List<Element> list = new ArrayList<Element>();
-        //得到User标签的所有子元素信息
+
         list = root.getChildren("User");
         Iterator<Element> it = list.iterator();
         while (it.hasNext()) {
@@ -143,7 +139,7 @@ public class JDOM {
 
     }
 
-    //处理用户密码和信息
+
     private static String getInfo(String passwd, String name) {
 
         return passwd + "/" + name;

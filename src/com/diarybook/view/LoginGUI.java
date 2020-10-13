@@ -20,12 +20,12 @@ import com.diarybook.util.JDOM;
 
 public class LoginGUI extends JFrame {
     private static final long serialVersionUID = 4994949944841194839L;
-    private JPanel contentPane;  //面板
-    private JTextField IDtxt; //ID输入框
-    private JLabel Passwdlabel;//密码标签
-    private JPasswordField passwordField;//密码输入框
-    private JButton login;//登录按钮
-    private JButton back;//返回按钮
+    private JPanel contentPane;
+    private JTextField IDtxt; //ID inut box
+    private JLabel Passwdlabel;// password label
+    private JPasswordField passwordField;// password input box
+    private JButton login;// log in button
+    private JButton back;// back button
 
     /**
      * Launch the application.
@@ -74,29 +74,29 @@ public class LoginGUI extends JFrame {
 
         login = new JButton("login");
 
-        //鼠标事件
+        // When mouse is clicked
         login.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                event_login();//登录事件方法
+                event_login();
             }
         });
 
-        //键盘事件
+        // When enter key is pressed
         login.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e)
             {
-                if(e.getKeyCode()==KeyEvent.VK_ENTER)//当键盘按下enter时调用
+                if(e.getKeyCode()==KeyEvent.VK_ENTER)
                 {
-                    event_login();//登录事件方法
+                    event_login();
                 }
             }
         });
         login.setBounds(239, 310, 93, 23);
         contentPane.add(login);
 
-        //返回按钮
+        //back button
         back = new JButton("BACK");
         back.addMouseListener(new MouseAdapter() {
             @Override
@@ -108,29 +108,28 @@ public class LoginGUI extends JFrame {
         back.setBounds(507, 310, 93, 23);
         contentPane.add(back);
 
-        //标题
         JLabel label = new JLabel("Welcome to use KnowYou");
         label.setFont(new Font("Ubuntu", Font.BOLD | Font.ITALIC, 30));
         label.setBounds(142, 54, 386, 35);
         contentPane.add(label);
     }
 
-    //封装登录事件
+    // login function
     private void event_login()
     {
         String id=IDtxt.getText();
         String passwd=new String(passwordField.getPassword());
         String flag=JDOM.read(id, passwd);
         if(flag.contains("Successful landing")) {
-            //拆分信息
+            // split message
             String[] bufs=flag.split("/");
             String name=bufs[1];
-            //提示框，打印登陆成功
+            // prompt success message
             JOptionPane.showMessageDialog(contentPane, "Welcome: "+name,"Welcome",JOptionPane.PLAIN_MESSAGE);
             UsersGUI.init(name);
             setVisible(false);
         } else {
-            //提示框，错误信息
+            // prompt error message
             JOptionPane.showMessageDialog(contentPane,flag,"ERROR",JOptionPane.ERROR_MESSAGE);
         }
     }

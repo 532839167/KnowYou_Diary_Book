@@ -29,14 +29,13 @@ import com.diarybook.util.Diary;
 public class UsersGUI extends JFrame {
     private JPanel contentPane;
     private JTextField textField;
-
-    //文件选择组建，用于用户阅读日记和删除日记时选择文件。
+    // selecting files
     private JFileChooser chooser;
 
     /*每个注册用户所记录的日记都位于自己的文件夹下，pathname用于保存用户的文件夹路径*/
     private static String pathname;
 
-    public static void init(String path) { //初始化方法
+    public static void init(String path) {
         pathname = path;
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -76,12 +75,12 @@ public class UsersGUI extends JFrame {
         JButton readButton = new JButton("Read the diary");
         readButton.addMouseListener(new MouseAdapter() {
             @Override
-            //阅读按钮鼠标事件，当用户点击时，将会创建一个新的内部窗体
+            //when mouse is clicked，create a internal frame
             public void mouseClicked(MouseEvent e) {
 
-                int value = chooser.showOpenDialog(panel);//判断用户是否选择了文件
+                int value = chooser.showOpenDialog(panel);// check if user has selected a file
 
-                //内部窗体
+                // internal frame
                 JInternalFrame internalFrame_Read = new JInternalFrame("Read the diary", false, true, false, false);
                 internalFrame_Read.setBounds(0, 77, 584, 275);
                 contentPane.add(internalFrame_Read);
@@ -92,19 +91,19 @@ public class UsersGUI extends JFrame {
 
                 //JTextPane没有append方法，所以使用Document来不断插入文本
                 javax.swing.text.Document doc=txtDiary.getDocument();
-                txtDiary.setBackground(Color.GREEN);//背景颜色为绿色
-                txtDiary.setEditable(false);//设置为不可编辑
+                txtDiary.setBackground(Color.GREEN);
+                txtDiary.setEditable(false);// set to not editable
 
-                //当value的值和JFileChooser.APPROVE_OPTION相等时，证明用户选择了文件
+                //if value == JFileChooser.APPROVE_OPTION, 证明user选择了文件
                 if (value == JFileChooser.APPROVE_OPTION) {
 
-                    //得到用户选择的文件
+                    //get the seleted file
                     File file = chooser.getSelectedFile();
 
-                    //如果文件存在
+                    // if exist
                     if(file.exists()) {
 
-                        //Diary.read()方法读取日记;
+                        // read
                         Diary.read(file, doc);
 
                         internalFrame_Read.setVisible(true);
@@ -115,12 +114,13 @@ public class UsersGUI extends JFrame {
 
         panel.add(readButton);
 
-        JButton addButton = new JButton("Create a diary");//新建按钮
+        // create new diary
+        JButton addButton = new JButton("Create a diary");
         addButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-                //创建新建日记内部窗体
+                // create a internal frame for new diary
                 final JInternalFrame internalFrame_Write = new JInternalFrame("Create a diary",false, true, false, false);
 
 
@@ -139,23 +139,24 @@ public class UsersGUI extends JFrame {
                 label.setBounds(46, 3, 52, 15);
                 internalFrame_Write.getContentPane().add(label);
 
-                //日记编辑区
+                // editor area
                 final JEditorPane editorPane = new JEditorPane();
                 editorPane.setBounds(0, 31, 568, 179);
                 internalFrame_Write.getContentPane().add(editorPane);
 
-                JButton save = new JButton("SAVE");//保存按钮
+                // Save button
+                JButton save = new JButton("SAVE");
                 save.setBounds(465, 213, 93, 23);
                 save.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent e) {
-                        //获取标题
+                        // get title
                         String title = textField.getText();
-                        //获取内容
+                        // get content
                         String txt = editorPane.getText();
-                        //调用Diary.addDiary()方法建立日记
+                        //add new diary
                         Diary.addDiary(pathname, title, txt);
 
-                        //日记建立完成后隐藏当前窗口
+                        // hide current window
                         internalFrame_Write.setVisible(false);
                     }
                 });
@@ -166,7 +167,7 @@ public class UsersGUI extends JFrame {
 
         panel.add(addButton);
 
-        //删除按钮
+        // delete button
         JButton delButton = new JButton("Delete");
         delButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -176,16 +177,16 @@ public class UsersGUI extends JFrame {
                 {
                     file=chooser.getSelectedFile();
 
-                    //删除确认框，用于确定用户是否确定删除
-                    int x=                                     JOptionPane.showConfirmDialog(panel,"Confirm delete?","Please confirm",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
+                    // confirmation
+                    int x= JOptionPane.showConfirmDialog(panel,"Confirm delete?","Please confirm",JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE);
 
                     if(file.exists())
                     {
-                        //当用户选择了OK时，调用删除方法
+                        //if ok, delete
                         if(x==JOptionPane.OK_OPTION) {
                             file.delete();
 
-                            //打印删除成功提示信息
+                            // print success message
                             JOptionPane.showMessageDialog(panel, "Delete Success!","information", JOptionPane.PLAIN_MESSAGE);
                         }
                     }
@@ -197,7 +198,7 @@ public class UsersGUI extends JFrame {
 
         panel.add(delButton);
 
-        //返回按钮
+        // back button
         JButton back = new JButton("BACK");
         back.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

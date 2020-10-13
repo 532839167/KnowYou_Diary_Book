@@ -20,9 +20,9 @@ public class RegisterGUI extends JFrame {
 
     private static final long serialVersionUID = 3250371445038102261L;
     private JPanel contentPane;
-    private JTextField nametext;  //name输入框
-    private JTextField IDtext;  //ID输入框
-    private JTextField passwdtext;  //密码输入框
+    private JTextField nametext;  //name input box
+    private JTextField IDtext;  //ID input box
+    private JTextField passwdtext;  //password input box
 
     /**
      * Launch the application.
@@ -51,23 +51,23 @@ public class RegisterGUI extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel namelabel = new JLabel("Please input user name"); //设置提示姓名输入标签
+        JLabel namelabel = new JLabel("Please input user name");
         namelabel.setBounds(102, 91, 151, 23);
         contentPane.add(namelabel);
 
-        JLabel IDlabel = new JLabel("Please input user ID");//设置提示ID输入标签
+        JLabel IDlabel = new JLabel("Please input user ID");
         IDlabel.setBounds(102, 160, 151, 23);
         contentPane.add(IDlabel);
 
 
-        JLabel passwdlaber = new JLabel("Please input user password");//设置提示密码输入标签
+        JLabel passwdlaber = new JLabel("Please input user password");
         passwdlaber.setBounds(102, 224, 163, 23);
         contentPane.add(passwdlaber);
 
-        nametext = new JTextField();  //普通文本输入框
-        nametext.setBounds(271, 92, 92, 21); //设置位置及大小
+        nametext = new JTextField();  // create input box
+        nametext.setBounds(271, 92, 92, 21);
         contentPane.add(nametext);
-        nametext.setColumns(10);  //设置长度
+        nametext.setColumns(10);
 
         //ID
         IDtext = new JTextField();
@@ -75,41 +75,38 @@ public class RegisterGUI extends JFrame {
         contentPane.add(IDtext);
         IDtext.setColumns(8);
 
-        //密码
+        //password
         passwdtext = new JTextField();
         passwdtext.setBounds(271, 225, 92, 21);
         contentPane.add(passwdtext);
         passwdtext.setColumns(10);
 
-        //注册按钮
+        // sign up button
         JButton register = new JButton("Sign Up");
 
-        //注册按钮鼠标点击事件
         register.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                String name = nametext.getText();//得到name
-                String ID = IDtext.getText();//得到ID
-                String passwd = passwdtext.getText();//得到密码
+                String name = nametext.getText();
+                String ID = IDtext.getText();
+                String passwd = passwdtext.getText();
                 //如果检测ID返回为null
                 if (Register.checkID(ID) == null) {
                     //如果检测密码返回为null
                     if (Register.checkPasswd(passwd) == null) {
-                        //注册信息，并且得到返回信息
+                        // register
                         String srt = Register.register(name, passwd, ID);
-
-
-                        //提示框，注册成功
+                        // prompt success message
                         JOptionPane.showMessageDialog(contentPane,srt,"information", JOptionPane.PLAIN_MESSAGE);
-                        //隐藏当前窗体
+                        // hide current page
                         setVisible(false);
-                        //返回首页
+                        // crate and return to index page
                         new IndexGUI().init();
                     } else {
-                        //提示框，输出错误信息
+                        // error message
                         JOptionPane.showMessageDialog(contentPane,Register.checkPasswd(passwd), "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    //提示框，输出错误信息
+                    // error message
                     JOptionPane.showMessageDialog(contentPane,Register.checkID(ID), "ERROR",
                             JOptionPane.ERROR_MESSAGE);
                 }
@@ -119,18 +116,18 @@ public class RegisterGUI extends JFrame {
         register.setBounds(321, 305, 93, 23);
         contentPane.add(register);
 
-        JButton back = new JButton("BACK");  //返回按钮
+        JButton back = new JButton("BACK");  // back button
         back.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                IndexGUI.init(); //创建首页
-                setVisible(false); //当前页面不可见
+                IndexGUI.init(); // return to  index page
+                setVisible(false); // hide current page
             }
         });
         back.setBounds(531, 305, 93, 23);
         contentPane.add(back);
 
-        JLabel label = new JLabel("Welcome to use KnowYou"); //欢迎标题
+        JLabel label = new JLabel("Welcome to use KnowYou");
         label.setFont(new Font("Ubuntu", Font.BOLD | Font.ITALIC, 30));
         label.setBounds(143, 26, 374, 35);
         contentPane.add(label);

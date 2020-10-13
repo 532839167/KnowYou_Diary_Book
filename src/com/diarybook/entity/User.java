@@ -1,11 +1,11 @@
 package com.diarybook.entity;
 
-// 用户名、ID、密码
+
 public class User {
 
-    private String ID;  //登录ID
-    private String name; //姓名
-    private String passwd;//密码
+    private String ID;
+    private String name;
+    private String passwd;
 
 
     public String getName() {

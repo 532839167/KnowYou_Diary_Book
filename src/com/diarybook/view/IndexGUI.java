@@ -13,21 +13,21 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class IndexGUI extends JFrame {
-    //自定义IndexGUI继承JFrame类
-    private JPanel contentPane;  //声明面板
-    //创建JFrame的类对象声明
+
+    private JPanel contentPane;
+
     private static IndexGUI frame;
 
     public static void main(String[] args) {
         init();
     }
-    public static void init()  //初始化方法
+    public static void init()
     {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    frame = new IndexGUI(); //实例化frame
-                    frame.setVisible(true); //设置窗体可见性
+                    frame = new IndexGUI(); //create frame
+                    frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -35,68 +35,71 @@ public class IndexGUI extends JFrame {
         });
     }
     public IndexGUI() {
-        setTitle("KnowYou");  //设置窗体标题
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //设置默认关闭方式，点击窗体关闭按钮可关闭窗体
+        setTitle("KnowYou");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 650, 400);
-        contentPane = new JPanel(); //实例化面板
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5)); //设置面板大小，位置
-        setContentPane(contentPane); //frame添加面板
-        contentPane.setLayout(null);  //面板设置布局为null,不可省略。否则页面布局将会杂乱。
+        contentPane = new JPanel(); // create panel
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5)); // set size position
+        setContentPane(contentPane); //add pane to frame
+        contentPane.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("Welcome to use KnowYou"); //标题
+        JLabel lblNewLabel = new JLabel("Welcome to use KnowYou");
         lblNewLabel.setBounds(132, 74, 386, 35);
         lblNewLabel.setFont(new Font("Ubuntu", Font.BOLD | Font.ITALIC, 30));
         contentPane.add(lblNewLabel);
 
-        JButton login = new JButton("Login"); //登录按钮
-        //登录按钮鼠标事件，当鼠标被点击时调用
+        JButton login = new JButton("Login");
+        // when mouse is clicked, trigger:
         login.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                event_Login(); //登录事件方法
+                event_Login();
             }
         });
 
 
-        //增加键盘事件
+        // When enter key is pressed, trigger:
         login.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode()==KeyEvent.VK_ENTER)
                 {
-                    event_Login();//登录事件方法
+                    event_Login();
                 }
             }
         });
         login.setBounds(65, 263, 124, 45);
         contentPane.add(login);
 
-        JButton register = new JButton("Sign Up"); //注册按钮
+        //sign up button
 
-        //注册鼠标事件
+        JButton register = new JButton("Sign Up");
+
+        // when mouse is clicked, trigger:
         register.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                event_register(); //注册事件方法
+                event_register();
             }
         });
 
-        //注册按钮键盘事件
+        // When enter key is pressed, trigger:
         register.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode()==KeyEvent.VK_ENTER)
                 {
-                    event_register();//注册事件方法
+                    event_register();
                 }
             }
         });
+
         register.setBounds(489, 263, 109, 45);
         contentPane.add(register);
 
     }
 
-    //对登录和注册事件进行私有方法封装
+
     private void event_Login()
     {
         setVisible(false);

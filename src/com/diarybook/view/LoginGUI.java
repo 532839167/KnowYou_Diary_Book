@@ -101,7 +101,7 @@ public class LoginGUI extends JFrame {
         back.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                IndexGUI.init();
+                //IndexGUI.init();
                 setVisible(false);
             }
         });

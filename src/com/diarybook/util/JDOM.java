@@ -15,6 +15,9 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
+/**
+ * read and write xml files
+ */
 public class JDOM {
 
     // register user info
@@ -23,21 +26,21 @@ public class JDOM {
         String path = "C:\\Users\\vasil\\Desktop\\project\\diary\\UserInfo.xml";
 
         File file = new File(path);
-        // sax parser
+        // sax parser: parse xml to document
         SAXBuilder saxBuilder = new SAXBuilder();
         Document doc;
         try {
             doc = saxBuilder.build(file);
 
             // create elements (tags) in file
-            Element root = doc.getRootElement();
+            Element root = doc.getRootElement(); // get root element node
             Element user = new Element("User");
             Element name = new Element("name");
             Element passwd = new Element("passwd");
 
             /* check if the id already exist */
             if (checkID(id, root)) {
-                // set ID as an atrribute of user
+                // set ID as an attribute of user
                 user.setAttribute(new Attribute("id", id));
                 // set name and password
                 name.setText(n);
@@ -68,10 +71,11 @@ public class JDOM {
 
     }
 
+    // check if id exist
     public static boolean checkID(String id, Element root) {
         // check if ID exist
         boolean flag = true;
-        @SuppressWarnings("unchecked")
+
         // get all sub elements for User tag in a map
                 List<Element> list = root.getChildren("User");
         // check if ID exist
@@ -118,7 +122,6 @@ public class JDOM {
         return "Wrong password!!";
     }
 
-    @SuppressWarnings("unchecked")
     /* add user and password to the map */
     private static Map<String, String> getPasswd(Element root) {
         // map for user info

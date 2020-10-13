@@ -9,6 +9,10 @@ import java.io.IOException;
 
 import javax.swing.text.Document;
 
+/**
+ * diary functions: write and read
+ */
+
 public class Diary {
 
     public static void addDiary(String pathname, String title, String txt) {
@@ -45,7 +49,7 @@ public class Diary {
         // read file, and write its content
         try (BufferedReader bufr = new BufferedReader(new FileReader(file));) {
             String txt = null;
-            // get line separator,因为Linux和Windows下的 line separator 是不一样的。这样可以增强跨平台性
+            // get line separator, Linux和Windows下的 line separator是不一样的
             String line = System.getProperty("line.separator");
             while ((txt = bufr.readLine()) != null) {
 

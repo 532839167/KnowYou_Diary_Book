@@ -23,6 +23,7 @@ public class IndexGUI extends JFrame {
     }
     public static void init()
     {
+        // add EventQueue.invokeLater when create a
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -53,7 +54,8 @@ public class IndexGUI extends JFrame {
         login.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                event_Login();
+                //event_Login();
+                new LoginGUI().loginGUI();
             }
         });
 
@@ -64,7 +66,8 @@ public class IndexGUI extends JFrame {
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode()==KeyEvent.VK_ENTER)
                 {
-                    event_Login();
+                    //event_Login();
+                    new LoginGUI().loginGUI();
                 }
             }
         });
@@ -79,7 +82,8 @@ public class IndexGUI extends JFrame {
         register.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                event_register();
+                //event_register();
+                new RegisterGUI().registerGUI();
             }
         });
 
@@ -89,7 +93,8 @@ public class IndexGUI extends JFrame {
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode()==KeyEvent.VK_ENTER)
                 {
-                    event_register();
+                    //event_register();
+                    new RegisterGUI().registerGUI();
                 }
             }
         });
@@ -99,16 +104,4 @@ public class IndexGUI extends JFrame {
 
     }
 
-
-    private void event_Login()
-    {
-        setVisible(false);
-        new LoginGUI().loginGUI();
-    }
-
-    private void event_register()
-    {
-        setVisible(false);
-        new RegisterGUI().registerGUI();
-    }
 }

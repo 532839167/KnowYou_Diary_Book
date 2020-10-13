@@ -120,7 +120,7 @@ public class RegisterGUI extends JFrame {
         back.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                IndexGUI.init(); // return to  index page
+                // IndexGUI.init(); // return to  index page
                 setVisible(false); // hide current page
             }
         });

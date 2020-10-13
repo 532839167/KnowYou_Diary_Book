@@ -24,7 +24,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.diarybook.util.Diary;
 
-
+/**
+ * provide user functions
+ */
 
 public class UsersGUI extends JFrame {
     private JPanel contentPane;
@@ -91,7 +93,7 @@ public class UsersGUI extends JFrame {
 
                 //JTextPane没有append方法，所以使用Document来不断插入文本
                 javax.swing.text.Document doc=txtDiary.getDocument();
-                txtDiary.setBackground(Color.GREEN);
+                //txtDiary.setBackground(Color.GREEN);
                 txtDiary.setEditable(false);// set to not editable
 
                 //if value == JFileChooser.APPROVE_OPTION, 证明user选择了文件

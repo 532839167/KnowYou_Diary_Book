@@ -23,7 +23,8 @@ public class JDOM {
     // register user info
     public static String write(String n, String p, String id) {
 
-        String path = "C:\\Users\\vasil\\Desktop\\project\\diary\\UserInfo.xml";
+        //String path = "C:\\Users\\vasil\\Desktop\\project\\diary\\UserInfo.xml";
+        String path = "./UserInfo.xml";
 
         File file = new File(path);
         // sax parser: parse xml to document
@@ -93,7 +94,8 @@ public class JDOM {
     //read xml
     public static String read(String id, String passwd) {
 
-        String path = "C:\\Users\\vasil\\Desktop\\project\\diary\\UserInfo.xml";
+        //String path = "C:\\Users\\vasil\\Desktop\\project\\diary\\UserInfo.xml";
+        String path = "./UserInfo.xml";
         File file = new File(path);
         SAXBuilder saxBuilder = new SAXBuilder();
 

@@ -6,11 +6,6 @@ public class Register {
 
     static User user = new User();
 
-//    public static String checkName(String name) {
-//        user.setName(name);
-//        return null;
-//
-//    }
 
     public static String checkID(String ID) {
         if (ID.matches("\\d{1,8}")) {

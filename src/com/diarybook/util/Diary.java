@@ -23,7 +23,7 @@ public class Diary {
         dirfile.mkdirs();
 
         // create diary file
-        File file = new File(dirfile, title + ".ky");
+        File file = new File(dirfile, title + ".txt");
         try {
             // write
             bufw = new BufferedWriter(new FileWriter(file, true));

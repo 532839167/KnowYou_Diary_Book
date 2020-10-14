@@ -100,7 +100,7 @@ public class RegisterGUI extends JFrame {
                         // hide current page
                         setVisible(false);
                         // crate and return to index page
-                        new IndexGUI().init();
+                        // new IndexGUI().init();
                     } else {
                         // error message
                         JOptionPane.showMessageDialog(contentPane,Register.checkPasswd(passwd), "ERROR", JOptionPane.ERROR_MESSAGE);

@@ -71,8 +71,8 @@ public class UsersGUI extends JFrame {
         tabbedPane.addTab("Management Journal", null, panel, null);
 
         chooser = new JFileChooser(".\\"+pathname);//初始化JFileChooser，并设置默认目录为用户目录
-        FileNameExtensionFilter filter=new FileNameExtensionFilter("Allowed","ky");//文件选择器，只允许选择.ky文件
-        chooser.setFileFilter(filter);//为文件设置选择器
+        FileNameExtensionFilter filter=new FileNameExtensionFilter("Allowed","txt");//only .txt
+        chooser.setFileFilter(filter);
 
         JButton readButton = new JButton("Read the diary");
         readButton.addMouseListener(new MouseAdapter() {
